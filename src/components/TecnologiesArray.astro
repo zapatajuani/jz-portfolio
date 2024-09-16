@@ -1,0 +1,17 @@
+---
+const { array } = Astro.props as { array:string[] }
+---
+<div>
+    {
+        array.map((item:string)=>{
+            return <img src={`/svg/${item}.svg`} alt={item} class="icon">
+        })
+    }
+</div>
+
+<style>
+    .icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+</style>

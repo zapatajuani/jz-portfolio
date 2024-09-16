@@ -1,0 +1,43 @@
+---
+import StudyCard from './StudyCard.astro'
+import { type Estudio } from "../types/Data";
+
+interface Props {
+    studiesData: Record<string, Estudio>
+    title: string
+}
+
+const {studiesData, title} = Astro.props as Props
+---
+
+<section id="studies">
+    <h1>{title}</h1>
+    <br>
+    <div>
+        {
+            Object.keys(studiesData).map((item:string)=>{
+                return <StudyCard studies={studiesData[item]}/>
+            })
+        }
+    </div>
+</section>
+
+<style>
+    section {
+        scroll-margin-top: 7rem;
+        width: 90rem;
+        height: auto;
+        margin: 1rem;
+    }
+    
+    div {
+        border-left: 2px solid rgb(196, 223, 99);
+        padding-bottom: 10px;
+        padding-left: 2rem;
+    }
+    
+    h1 {
+        color: rgb(196, 223, 99);
+        font-size: 4rem;
+    }
+</style>

@@ -1,0 +1,83 @@
+---
+import { type Exp } from "../types/Data"
+
+import { getCollection } from "astro:content"
+const jobsDesc = await getCollection("jobs")
+
+
+interface Props {
+    exp: Exp
+}
+
+const { exp } = Astro.props as Props
+---
+
+<div class="container">
+    <div class="point"></div>
+    <span>
+        <h4>{exp.empresa}</h4><p class="bold">{exp.lugar}</p>
+    </span>
+    <span>
+        <p class="bold">{exp.puesto}</p><p class="bold">{exp.tiempo}</p>
+    </span>
+    <br>
+    <p>
+        {
+            jobsDesc.map(async (desc) => {
+                if (exp.experiencia == desc.slug) {
+                    const { Content } = await desc.render()
+                    return (
+                        <Content />
+                    )
+                }
+            })
+        }
+    </p>
+
+
+</div>
+
+<style>
+    .container {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .point {
+        position: absolute;
+        background-color: rgb(196, 223, 99);
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+
+        top: 15px;
+        left: -28.5px; /*radio + ancho de borde*/
+    
+        transition: scale 0.3s ease;
+    }
+
+    .container:hover .point {
+        scale: 1.5;
+    }
+
+    span {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    h4 {
+        font-size: 3rem;
+    }
+
+    p {
+        text-align: justify;
+        font-size: 2rem;
+    }
+
+    .bold {
+        font-weight: 700;
+    }
+</style>

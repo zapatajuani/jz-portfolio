@@ -1,0 +1,76 @@
+---
+import DescriptionEs from '../content/es/about_me_es.md'
+import DescriptionEn from '../content/en/about_me_en.md'
+import '../styles/md_styles.css'
+
+const { title, lan } = Astro.props
+---
+
+<section id="about-me">
+    <h1>{title}
+        <span class="title-icon-container">
+            <img class="title-icon bandera" src="/svg/arg.svg" alt="bandera-argentina">
+            <img class="title-icon mate" src="/svg/mate.svg" alt="mate">
+        </span>
+    </h1>
+    <br>
+    <div class="container">
+        <img id="my-image" src="/imgs/mi_foto.jpg" alt="">
+        {lan == "es" ? <DescriptionEs /> : <DescriptionEn />}
+    </div>
+</section>
+
+<style>
+    section {
+        scroll-margin-top: 7rem;
+        width: 90rem;
+        height: auto;
+        margin: 1rem;
+    }
+    
+    h1 {
+        color: rgb(196, 223, 99);
+        font-size: 4rem;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: start;
+
+        gap: 20px;
+    }
+
+    .title-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .title-icon {
+        height: 40px;
+        width: auto;
+    }
+
+    .bandera {
+        position: relative;
+        top: 2px;
+    }
+
+    .mate {
+        position: relative;
+        bottom: 3px;
+    }
+
+    #my-image {
+        border-radius: 5px;
+        width: 400px;
+        float: right;
+        margin-left: 20px;
+        margin-bottom: 5px;
+        filter: drop-shadow(
+            2px 4px 3px rgba(0, 0, 0, 0.3)
+        );
+    }
+
+</style>

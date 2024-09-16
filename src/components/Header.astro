@@ -1,0 +1,78 @@
+---
+const { data } = Astro.props
+---
+
+<header>
+    <nav>
+        <a href="#title">{data[0]}</a>
+        <a href="#experience">{data[1]}</a>
+        <a href="#projects">{data[2]}</a>
+        <a href="#studies">{data[3]}</a>
+        <a href="#certificates">{data[4]}</a>
+        <a href="#about-me">{data[5]}</a>
+    </nav>
+    <a href={data[6]}>
+        <img src={data[7]} alt={data[8]}>
+    </a>
+</header>
+
+<style>
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 3rem 1rem 3rem;
+
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+        height: 6rem;
+
+        animation: enhace-header linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 10rem;
+
+        z-index: 999;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        gap: 3rem;
+    }
+
+    nav a {
+        width: auto;
+        color: inherit;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: 600;
+        transition: color 0.1s linear;
+        transition: scale 0.2s linear;
+    }
+
+    nav a:hover {
+        color: rgb(196, 223, 99);
+        scale: 1.1;
+    }
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        transition: scale 0.2s ease-in;
+    }
+
+    img:hover {
+        scale: 1.2;
+    }
+
+    @keyframes enhace-header {
+        to {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+    }
+</style>

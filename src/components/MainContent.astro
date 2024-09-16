@@ -1,0 +1,46 @@
+---
+import Title from '@components/Title.astro';
+import Experience from "@components/Experience.astro";
+import Projects from './Projects.astro';
+import { type Data } from '../types/Data';
+import Studies from './Studies.astro';
+import Carrousel from './Carrousel.astro';
+import AboutMe from './AboutMe.astro';
+
+interface Props {
+	data: Data,
+	titles: string[]
+	lan: string
+}
+
+const {data, titles, lan} = Astro.props as Props
+---
+
+<main>
+    <Title titleData={data.titulo}/>
+	<br>
+	<br>
+	<Experience expData={data.experiencia} title={titles[0]}/>
+	<br>
+	<br>
+	<Projects projectsData={data.proyectos} title={titles[1]}/>
+	<br>
+	<br>
+	<Studies studiesData={data.estudios} title={titles[2]}/>
+	<br>
+	<br>
+	<Carrousel title={titles[3]}/>
+	<br>
+	<br>
+	<AboutMe lan={lan} title={titles[4]}/>
+</main>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+        margin: 1rem 0;
+	}
+</style>

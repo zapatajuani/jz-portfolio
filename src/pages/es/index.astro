@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import MainContent from '@components/MainContent.astro';
+import Footer from '@components/Footer.astro';
+import esData from '@content/data/esData.json'
+
+const headearData:string[] = [
+	"TITULO",
+	"EXPERIENCIA",
+	"PROYECTOS",
+	"ESTUDIOS",
+	"CERTIFICADOS",
+	"SOBRE-MI",
+	"/en",
+	"/svg/gb.svg",
+	"Spain flag"
+]
+
+const mainTitles:string[] = [
+	"Experiencia",
+	"Proyectos",
+	"Estudios",
+	"Certificados",
+	"Sobre-mí"
+]
+
+---
+
+<Layout >
+	<Header data={headearData}/>
+	<MainContent data={esData} titles={mainTitles} lan="es"/>
+	<Footer lan="es"/>
+</Layout>

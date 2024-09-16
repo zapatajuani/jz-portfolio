@@ -1,0 +1,28 @@
+---
+import ProjectCard from "./ProjectCard.astro"
+
+const { projectsData, title } = Astro.props
+---
+
+<section id="projects">
+    <h1>{title}</h1>
+    {
+        Object.keys(projectsData).map((item:string)=>{
+            return <ProjectCard details={projectsData[item]}/>
+        })
+    }
+</section>
+
+<style>
+    section {
+        scroll-margin-top: 7rem;
+        width: 90rem;
+        height: auto;
+        margin: 1rem;
+    }
+    
+    h1 {
+        color: rgb(196, 223, 99);
+        font-size: 4rem;
+    }
+</style>

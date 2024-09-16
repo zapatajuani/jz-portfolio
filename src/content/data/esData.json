@@ -1,0 +1,95 @@
+{
+    "titulo": {
+        "titulo": "Juan Ignacio Zapata",
+        "subtitulo": "Programador Fullstack | Desarrolador Python",
+        "descripcion": "Soy un desarrollador apasionado por la programación, impulsado por la curiosidad y el aprendizaje continuo. Disfruto creando soluciones elegantes y eficientes a problemas complejos.",
+        "cv": "https://docs.google.com/document/d/1nO7uOtEymXCU2EK17USbQwbCbzDcyglD3SHFKC0-JVs/edit",
+        "linkedin": "https://www.linkedin.com/in/zapatajuani/"
+    },
+
+    "experiencia": {
+        "exp2": {
+            "empresa": "SDS - Smart Drawing Services",
+            "lugar": "Auckland, NZ",
+            "puesto": "Diseño eléctrico | Desarrollo de software",
+            "tiempo": "Enero 2021 - Presente",
+            "experiencia": "job_desc_es_2"
+        },
+        "exp1": {
+            "empresa": "Trabajo freelance",
+            "lugar": "Remoto",
+            "puesto": "Diseño eléctrico",
+            "tiempo": "Agosto 2019 - Enero 2021",
+            "experiencia": "job_desc_es_1"
+        }
+    },
+
+    "proyectos": {
+        "proyecto1": {
+            "img": "../src/assets/foto-presentacion.jpeg",
+            "titulo": "YT-ES",
+            "descripcion": "Soy un desarrollador apasionado por la programación, impulsado por la curiosidad y el aprendizaje continuo. Disfruto creando soluciones elegantes y eficientes a problemas complejos.",
+            "tecnologias": ["html","css","react"],
+            "url": "https://www.google.com",
+            "github": "https://www.youtube.com"
+        }
+    },
+
+    "estudios": {
+        "estudio4": {
+            "institucion": "UTN Buenos Aires - Centro de e-Learning UTN BA",
+            "lugar": "Remoto",
+            "titulo": "Diplomatura en Base de Datos",
+            "tiempo": "Nov 2023 - Feb 2024",
+            "conocimientos": [
+                "Conocimientos de base de datos relacionales",
+                "Estructura de base de datos",
+                "SQL",
+                "MySQL",
+                "Base de datos Oracle"
+            ]
+        },
+        "estudio3": {
+            "institucion": "UTN Buenos Aires - Centro de e-Learning UTN BA",
+            "lugar": "Remoto",
+            "titulo": "Diplomatura en Python",
+            "tiempo": "Jul 2023 - Feb 2024",
+            "conocimientos": [
+                "Habilidades avanzadas en Python",
+                "Manejo de clases",
+                "Programacion orientada a objetos", 
+                "Manejo y diseño de GUI",
+                "Patrones de diseño"
+            ]
+        },
+        "estudio2": {
+            "institucion": "UNLP - Facultad de Ciencias Astronomicas y Geofisicas La Plata",
+            "lugar": "La Plata, BA",
+            "titulo": "Licenciatura en Astronomía",
+            "tiempo": "2016 - In progress",
+            "conocimientos": [
+                "Física avanzada",
+                "Matemáticas avanzada",
+                "Logica matemática",
+                "Estadistica",
+                "Álgebra",
+                "Álgebra lineal",
+                "Cálculo multivariable"
+            ]
+        },
+        "estudio1": {
+            "institucion": "EEST n.º 6 Siderurgia Argentina",
+            "lugar": "San Nicolás de los Arroyos, BA",
+            "titulo": "Técnico Electrónico",
+            "tiempo": "2009 - 2015",
+            "conocimientos": [
+                "Instalaciones de bajo/medio voltaje",
+                "PLC",
+                "PIC",
+                "Software mikroC",
+                "Diseño de circuitos a medida y PCB",
+                "Telecomunicaicones"
+            ]
+        }
+    }
+}

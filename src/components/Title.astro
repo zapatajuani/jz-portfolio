@@ -1,0 +1,73 @@
+---
+const { titleData } = Astro.props
+---
+
+<section id="title">
+    <h1>{titleData.titulo}</h1>
+    <br>
+    <h2>{titleData.subtitulo}</h2>
+    <br>
+    <p>{titleData.descripcion}</p>
+    <br>
+    <div class="icon-container">
+        <a title="CV" target="_blank" href={titleData.cv}><img src="/svg/cv.svg" alt="CV icon"></a>
+        <a title="GitHub" target="_blank" href="https://github.com/zapatajuani"><img src="/svg/github.svg" alt="Github icon"></a>
+        <a title="LinkedIn" target="_blank" href={titleData.linkedin}><img src="/svg/linkedin.svg" alt="Linkedin icon"></a>
+    </div>
+</section>
+
+<style>
+    section {
+        scroll-margin-top: 8rem;
+        width: 90rem;
+        height: auto;
+        margin: 1rem;
+    }
+    
+    h1 {
+        color: rgb(196, 223, 99);
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+    
+    p {
+        text-align: justify;
+        font-size: 2.4rem;
+    }
+
+    img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .icon-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 4.5rem;
+        height: 4.5rem;
+        padding: 3rem;
+
+        border-radius: 50%;
+
+        transition: background-color 0.2s linear;
+    }
+
+    a:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+</style>
+
