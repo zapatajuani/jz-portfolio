@@ -1,14 +1,34 @@
 ---
+import type { Data } from '../types/Data'
+
 interface Props {
     lan: string
+    data: Data
 }
 
-const { lan } = Astro.props as Props
+const { lan, data } = Astro.props as Props
 
 ---
 
-<footer>
-    <div>
+<footer id="contact">
+    <div class="container">
+        <p>
+            {
+                lan == "es"?
+                "Buscame en mis redes":
+                "Find me on my socials"
+            }
+        </p>
+        <a class="xref" target="_blank" href="https://github.com/zapatajuani">
+            <img src="/svg/github.svg" alt="">
+            <p>GitHub</p>
+        </a>
+        <a class="xref" target="_blank" href={data.titulo.linkedin}>
+            <img src="/svg/linkedin.svg" alt="">
+            <p>LinkedIn</p>
+        </a>
+    </div>
+    <div class="container">
         <p>
             {
                 lan == "es"?
@@ -16,7 +36,33 @@ const { lan } = Astro.props as Props
                 "Powered with Astro"
             }
         </p>
-        <img src="/svg/astro.svg" alt="astro-icon">
+        <img class="icon" src="/svg/astro.svg" alt="astro-icon">
+        <p>
+            {
+                lan == "es"?
+                "Hecho por Juan Ignacio Zapata":
+                "Designed by Juan Ignacio Zapata"
+            }
+        </p>
+    </div>
+    <div class="container">
+        <p>
+            {
+                lan == "es"?
+                "Contactame escaneando el QR":
+                "Contact me by scanning the QR"
+            }
+        </p>
+        <img class="qr" src="/imgs/qr.png" alt="">
+        <a href="https://forms.gle/xZNMDmq3eFcVGroH7" target="_blank">
+            <p>
+                {
+                    lan == "es"?
+                    "O haz click aquí":
+                    "Or click here"
+                }
+            </p>
+        </a>
     </div>
 </footer>
 
@@ -25,15 +71,75 @@ const { lan } = Astro.props as Props
         background-color: rgb(19, 19, 80);
         
         width: 100%;
-        height: 20rem;
+        height: 25rem;
 
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-row: 0.8fr 0.2fr;
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    img {
+    /* ------------------------------------------- */
+
+    .container:nth-child(1) {
+        margin-left: 5%;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .container:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .container:nth-child(3) {
+        margin-left: 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* ------------------------------------------- */
+
+    .icon {
         width: 50px;
         height: auto;
+    }
+
+    .qr {
+        border-radius: 5px;
+        width: 150px;
+        height: auto;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 1rem;
+    }
+
+    .xref {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .xref:hover {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .xref img {
+        height: 30px;
+        width: auto;
     }
 </style>

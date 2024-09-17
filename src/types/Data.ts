@@ -34,4 +34,6 @@ export type Titulo = {
     titulo:      string;
     subtitulo:   string;
     descripcion: string;
+    cv:          string;
+    linkedin:    string;
 }
