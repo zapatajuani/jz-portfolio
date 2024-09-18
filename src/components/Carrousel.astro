@@ -1,4 +1,9 @@
 ---
+import { type Certificate } from '../types/Data'
+import certificates from '../content/data/certificates.json'
+
+const certificados: Record<string, Certificate> = certificates
+
 interface Props {
     title: string
 }
@@ -9,17 +14,28 @@ const {title} = Astro.props as Props
     <h1>{title}</h1>
     <br>
     <br>
-    <div class="container">        
-        <img class="certificates" src="/certificates/006.jpg" alt="Imagen 1">
-        <img class="certificates" src="/certificates/005.jpg" alt="Imagen 1">
-        <img class="certificates" src="/certificates/004.jpg" alt="Imagen 1">
-        <img class="certificates" src="/certificates/003.jpg" alt="Imagen 1">
-        <img class="certificates" src="/certificates/002.jpg" alt="Imagen 1">
-        <img class="certificates" src="/certificates/001.jpg" alt="Imagen 1">
+    <div class="container">
+        
+        {
+            Object.keys(certificados)
+              .reverse()
+              .map((key) => {
+                const id = certificados[key].url.split("/").pop()
+                return (
+                  <img
+                    class="certificates"
+                    id={`${id}`}
+                    src={certificados[key].url}
+                    alt={certificados[key].desc}
+                  />
+                );
+              })
+        }
 
         <button id="left">
             <img class="icon" src="/svg/left.svg" alt="move-left">
         </button>
+
         <button id="right">
             <img class="icon" src="/svg/right.svg" alt="move-right">
         </button>
@@ -28,138 +44,241 @@ const {title} = Astro.props as Props
             <img class="download-icon" src="/svg/download.svg" alt="download">
             <img class="download-icon-base" src="/svg/line.svg" alt="">
         </div>
+
+        <img id="download-mobile" src="/svg/download-movil.svg" alt="download">
     </div>
 </section>
 
 <style>
-    h1 {
-        color: rgb(196, 223, 99);
-        font-size: 4rem;
-        margin-bottom: 100px;
+
+
+    @media (width >= 1000px) {
+
+        h1 {
+            color: rgb(196, 223, 99);
+            font-size: 4rem;
+            margin-bottom: 100px;
+        }
+
+        .ref-dot,
+        .ref-certificate,
+        .ref-container {
+            display: none;
+        }
+
+        section {
+            scroll-margin-top: 7rem;
+            width: 90rem;
+            height: auto;
+            margin: 1rem;
+        }
+
+        .container {
+            margin-bottom: 95px;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        .certificates {
+            position: absolute;
+            width: auto;
+            height: 100%;
+            transition: 0.4s;
+            transition: scale 0.6 linear;
+            cursor: pointer;
+        }
+
+        .certificates:hover {
+            scale: 1.8;
+        }
+
+        #left {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            position: absolute;
+
+            bottom: 40%;
+            right: 100%;
+            
+            height: 100px;
+            width: 70px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+        }
+
+        #right {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            position: absolute;
+
+            bottom: 40%;
+            left: 100%;
+
+            height: 100px;
+            width: 70px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+        }
+
+        .icon {
+            height: 100px;
+            width: 70px;
+        }
+
+        .icon:hover {
+            scale: 1.1;
+            filter: drop-shadow(
+                2px 4px 3px rgba(0, 0, 0, 0.3)
+            );
+        }
+
+        /* -------------------------------------------- */
+
+        #download {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            position: absolute;
+
+            bottom: 100%;
+            left: 90%;
+
+            z-index: 10;
+        }
+
+        .download-icon {
+            position: absolute;
+            height: 55px;
+            width: 25px;
+
+            right: 50px;
+            bottom: 40px;
+
+            opacity: 0;
+            transition: opacity 0.3s linear,
+            transform 0.3s ease;
+        }
+
+        .download-icon-base {
+            position: absolute;
+            right: 25px;
+            height: 80px;
+
+            right: 50px;
+            bottom: 0px;
+
+            width: 0px;
+            transition: width 0.3s ease;
+        }
+
+        .animate {
+            opacity: 1;
+            transform: translateY(5px)
+        }
+
+        .animate-base {
+            opacity: 1;
+            width: 25px;
+        }
+
+        #download-mobile {
+            display: none;
+        }
     }
 
-    section {
-        scroll-margin-top: 7rem;
-        width: 90rem;
-        height: auto;
-        margin: 1rem;
-    }
+    @media (width < 1000px) {
+        section {
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+        }
 
-    .container {
-        margin-bottom: 95px;
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        width: 100%;
-        height: 300px;
-        position: relative;
-    }
+        /* ----------------------------------- */
 
-    .certificates {
-        position: absolute;
-        width: auto;
-        height: 100%;
-        transition: 0.4s;
-        transition: scale 0.6 linear;
-        cursor: pointer;
-    }
+        .ref-container {
+            position: absolute;
+            z-index: 9999;
 
-    .certificates:hover {
-        scale: 1.8;
-    }
+            right: 50%;
+            left: 50%;
 
-    #left {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        position: absolute;
+            bottom: 30px;
 
-        bottom: 40%;
-        right: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .ref-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: grey;
+            opacity: 0.8;
+        }
+
+        .ref-certificate {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        /* ----------------------------------- */
+
+        #left,
+        #right,
+        #download {
+            display: none;
+        }
         
-        height: 100px;
-        width: 70px;
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
+        #download-mobile {
+            position: absolute;
+
+            height: 40px;
+            width: auto;
+
+            bottom: 80%;
+            left: 90%;
+
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: rgb(196, 223, 99);
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scroll-margin-top: 8rem;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        img {
+            scroll-snap-align: start;
+            height: auto;
+            width: 100%;
+        }
     }
 
-    #right {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        position: absolute;
-
-        bottom: 40%;
-        left: 100%;
-
-        height: 100px;
-        width: 70px;
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
-    }
-
-    .icon {
-        height: 100px;
-        width: 70px;
-    }
-
-    .icon:hover {
-        scale: 1.1;
-        filter: drop-shadow(
-            2px 4px 3px rgba(0, 0, 0, 0.3)
-        );
-    }
-
-    /* -------------------------------------------- */
-
-    #download {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        position: absolute;
-
-        bottom: 100%;
-        left: 90%;
-
-        z-index: 10;
-    }
-
-    .download-icon {
-        position: absolute;
-        height: 55px;
-        width: 25px;
-
-        right: 50px;
-        bottom: 40px;
-
-        opacity: 0;
-        transition: opacity 0.3s linear,
-        transform 0.3s ease;
-    }
-
-    .download-icon-base {
-        position: absolute;
-        right: 25px;
-        height: 80px;
-
-        right: 50px;
-        bottom: 0px;
-
-        width: 0px;
-        transition: width 0.3s ease;
-    }
-
-    .animate {
-        opacity: 1;
-        transform: translateY(5px)
-    }
-
-    .animate-base {
-        opacity: 1;
-        width: 25px;
-    }
 </style>
 
 <script>
@@ -170,62 +289,94 @@ const {title} = Astro.props as Props
     const animationTarget = document.querySelector(".download-icon") as HTMLImageElement 
     const animationTargetBase = document.querySelector(".download-icon-base") as HTMLImageElement
 
-    let active = 2
+    const mobileDownload = document.querySelector("#download-mobile") as HTMLImageElement
 
-    function loadShow(){
-        let stt = 0
-        items[active].style.transform = `none`
-        items[active].style.zIndex = "1"
-        items[active].style.filter = 'none'
-        items[active].style.opacity = "1"
+    if (window.matchMedia("(width >= 1000px)").matches) {
+        let active = 2
+
+        function loadShow(){
+            let stt = 0
+            items[active].style.transform = `none`
+            items[active].style.zIndex = "1"
+            items[active].style.filter = 'none'
+            items[active].style.opacity = "1"
+            
+            for(var i = active + 1; i < items.length; i++){
+            stt++
+            items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`
+            items[i].style.zIndex = (-stt).toString()
+            items[i].style.filter = 'blur(5px)'
+            items[i].style.opacity = stt > 2 ? "0" : "0.6"
+            }
         
-        for(var i = active + 1; i < items.length; i++){
-        stt++
-        items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`
-        items[i].style.zIndex = (-stt).toString()
-        items[i].style.filter = 'blur(5px)'
-        items[i].style.opacity = stt > 2 ? "0" : "0.6"
+            stt = 0
+            for(var i = active - 1; i >= 0; i--){
+            stt++
+            items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`
+            items[i].style.zIndex = (-stt).toString()
+            items[i].style.filter = 'blur(5px)'
+            items[i].style.opacity = stt > 2 ? "0" : "0.6"
+            }
         }
-    
-        stt = 0
-        for(var i = active - 1; i >= 0; i--){
-        stt++
-        items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`
-        items[i].style.zIndex = (-stt).toString()
-        items[i].style.filter = 'blur(5px)'
-        items[i].style.opacity = stt > 2 ? "0" : "0.6"
-        }
+
+        right.addEventListener('click', ()=>{
+            active = active + 1 < items.length ? active + 1 : active
+            loadShow()
+        })
+
+        left.addEventListener('click', () => {
+            active = active - 1 >= 0 ? active - 1 : active
+            loadShow()
+        })
+
+        items.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                animationTarget.classList.add('animate')
+                animationTargetBase.classList.add('animate-base')
+            })
+
+            item.addEventListener('mouseleave', () => {
+                animationTarget.classList.remove('animate')
+                animationTargetBase.classList.remove('animate-base')
+            })
+        })
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const pdfUrl = item.getAttribute('src') as string
+                window.open(pdfUrl.replace(".jpg", ".pdf"), '_blank')
+            })
+        })
+
+        loadShow()
+
+    } else {
+        let actImg = ""
+
+        mobileDownload.addEventListener('click', () => {
+            // URL del archivo PDF
+            var pdfUrl = `${actImg.replace("jpg", "pdf")}`
+
+            // Crear un enlace temporal
+            var link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = 'zapatajuani-certificado.pdf'; // Nombre con el que se guardará el archivo
+
+            // Simular un clic en el enlace
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    actImg = entry.target.src
+                }
+            })
+        }, { threshold: [1] })
+
+        items.forEach(item => observer.observe(item))
     }
-
-    right.addEventListener('click', ()=>{
-        active = active + 1 < items.length ? active + 1 : active
-        loadShow()
-    })
-
-    left.addEventListener('click', () => {
-        active = active - 1 >= 0 ? active - 1 : active
-        loadShow()
-    })
-
-    items.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            animationTarget.classList.add('animate')
-            animationTargetBase.classList.add('animate-base')
-        })
-
-        item.addEventListener('mouseleave', () => {
-            animationTarget.classList.remove('animate')
-            animationTargetBase.classList.remove('animate-base')
-        })
-    })
-
-    items.forEach(item => {
-        item.addEventListener('click', () => {
-            const pdfUrl = item.getAttribute('src') as string
-            window.open(pdfUrl.replace(".jpg", ".pdf"), '_blank')
-        })
-    })
-
-    loadShow()
 
 </script>

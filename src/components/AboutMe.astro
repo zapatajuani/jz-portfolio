@@ -23,7 +23,7 @@ const { title, lan } = Astro.props
 <style>
     section {
         scroll-margin-top: 7rem;
-        width: 90rem;
+        max-width: 90rem;
         height: auto;
         margin: 1rem;
     }
@@ -68,9 +68,33 @@ const { title, lan } = Astro.props
         float: right;
         margin-left: 20px;
         margin-bottom: 5px;
+
         filter: drop-shadow(
             2px 4px 3px rgba(0, 0, 0, 0.3)
         );
+    }
+
+    @media (width < 1000px) {
+        section {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+        }
+
+        #my-image {
+            width: 100%;
+        }
     }
 
 </style>

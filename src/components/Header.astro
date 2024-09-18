@@ -3,46 +3,28 @@ const { data } = Astro.props
 ---
 
 <header>
-    <nav>
-        <a href="#title">{data[0]}</a>
-        <a href="#experience">{data[1]}</a>
-        <a href="#projects">{data[2]}</a>
-        <a href="#studies">{data[3]}</a>
-        <a href="#certificates">{data[4]}</a>
-        <a href="#about-me">{data[5]}</a>
-        <a href="#contact">{data[6]}</a>
+    <img class="smenu menu fade-in" src="/svg/menu.svg" alt="menu-icon">
+    <img class="smenu cross fade-out" src="/svg/cross.svg" alt="menu-icon">
+    <nav class="nav-menu">
+        <a class="nav-el" href="#title">{data[0]}</a>
+        <a class="nav-el" href="#experience">{data[1]}</a>
+        <a class="nav-el" href="#projects">{data[2]}</a>
+        <a class="nav-el" href="#studies">{data[3]}</a>
+        <a class="nav-el" href="#certificates">{data[4]}</a>
+        <a class="nav-el" href="#about-me">{data[5]}</a>
+        <a class="nav-el" href="#contact">{data[6]}</a>
     </nav>
     <a href={data[7]}>
-        <img src={data[8]} alt={data[9]}>
+        <img id="flag" src={data[8]} alt={data[9]}>
     </a>
 </header>
 
-<style>
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 3rem 1rem 3rem;
+<style> 
 
-        position: sticky;
-        top: 0;
-
-        width: 100%;
-        height: 6rem;
-
-        animation: enhace-header linear both;
-        animation-timeline: scroll(root block);
-        animation-range: 0 10rem;
-
-        z-index: 999;
-    }
-
-    nav {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        gap: 3rem;
+    img {
+        width: 3rem;
+        height: 3rem;
+        transition: scale 0.2s ease-in;
     }
 
     nav a {
@@ -55,25 +37,162 @@ const { data } = Astro.props
         transition: scale 0.2s linear;
     }
 
-    nav a:hover {
-        color: rgb(196, 223, 99);
-        scale: 1.1;
+    @media (width >= 1000px) {
+
+        .smenu {
+            display: none;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem 1rem 3rem;
+
+            position: sticky;
+            top: 0;
+
+            width: 100%;
+            height: 6rem;
+
+            animation: enhace-header linear both;
+            animation-timeline: scroll(root block);
+            animation-range: 0 10rem;
+
+            z-index: 999;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            gap: 3rem;
+        }
+
+
+        nav a:hover {
+            color: rgb(196, 223, 99);
+            scale: 1.1;
+        }
+
+        img:hover {
+            scale: 1.2;
+        }
+
+        @keyframes enhace-header {
+            to {
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(5px);
+            }
+        }
+
     }
 
-    img {
-        width: 3rem;
-        height: 3rem;
-        transition: scale 0.2s ease-in;
-    }
+    @media (width < 1000px) {
 
-    img:hover {
-        scale: 1.2;
-    }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
 
-    @keyframes enhace-header {
-        to {
-            background: rgba(0, 0, 0, 0.7);
+            width: 100%;
+        }
+        
+        nav {
+            position: absolute;
+            width: 100%;
+            height: 665px;
+
+            padding-top: 20px;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
+
+            transform: translateY(-600px);
+            transition: transform 1s ease;
+        }
+
+        /* -------------------------------------------------- */
+
+        img {
+            position: absolute;
+        }
+
+        .smenu {
+            top: 20px;
+            left: 20px;
+            transition: opacity 0.5s ease,
+            transform 1s ease;
+        }
+
+        #flag {
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* -------------- ANIMACIONES -------------------------- */
+
+        .fade-out {
+            transform: rotate(-180deg);
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .fade-in {
+            transform: rotate(180deg);
+            opacity: 1;
+            z-index: 1000;
+        }
+
+        .show-menu {
+            transform: translateY(0);
         }
     }
 </style>
+
+<script>
+    const menu = document.querySelector(".smenu.menu") as HTMLImageElement
+    const cross = document.querySelector(".smenu.cross") as HTMLImageElement
+    const nav = document.querySelector(".nav-menu") as HTMLElement
+    const navElements = document.querySelectorAll(".nav-el") as NodeListOf<HTMLElement> 
+
+    const fadeOut = () => {
+        menu.classList.add("fade-in")
+        cross.classList.add("fade-out")
+
+        menu.classList.remove("fade-out")
+        cross.classList.remove("fade-in")
+
+        nav.classList.remove("show-menu")
+    }
+
+    navElements.forEach((e)=>{
+        e.addEventListener('click', ()=>{
+            fadeOut()
+        })
+    })
+
+    menu.addEventListener('click', () => {
+        console.log("click1");
+
+        menu.classList.add("fade-out")
+        cross.classList.add("fade-in")
+
+        menu.classList.remove("fade-in")
+        cross.classList.remove("fade-out")
+
+        nav.classList.add("show-menu")
+    })
+
+    cross.addEventListener('click', () => {
+        fadeOut()
+    })
+</script>

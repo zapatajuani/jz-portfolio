@@ -37,3 +37,8 @@ export type Titulo = {
     cv:          string;
     linkedin:    string;
 }
+
+export type Certificate = {
+    url:  string;
+    desc: string;
+}

@@ -11,10 +11,10 @@ const {details} = Astro.props as Props
 ---
 
 <div class="container">
-    <div><img src="/imgs/prueba.jpeg" alt=""></div>
-    <div><h4>{details.titulo}</h4></div>
-    <div><p>{details.descripcion}</p></div>
-    <div>
+    <div class="img-cont"><img src="/imgs/prueba.jpeg" alt=""></div>
+    <div class="title-cont"><h4>{details.titulo}</h4></div>
+    <div class="desc-cont"><p class="desc">{details.descripcion}</p></div>
+    <div class="icon-cont">
         <TecnologiesArray array={details.tecnologias} />
         <div>
             <a href={details.github} target="_blank">
@@ -80,11 +80,6 @@ const {details} = Astro.props as Props
         align-items: center;
     }
 
-    .container div:nth-child(3) p {
-        text-align: justify;
-        font-size: 2rem;
-    }
-
     .container div:nth-child(4) {
         border-bottom-right-radius: 15px;
         padding: 1rem;
@@ -102,7 +97,6 @@ const {details} = Astro.props as Props
         height: 100%;
         object-fit: cover;
         border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
     }
 
     .icon {
@@ -123,6 +117,54 @@ const {details} = Astro.props as Props
 
     a:hover {
         background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (width >= 1000px) {
+        img {
+            border-bottom-left-radius: 15px;
+        }
+    
+        .container div:nth-child(3) p {
+            text-align: justify;
+            font-size: 2rem;
+        }
+    }
+
+    @media (width < 1000px) {
+        .container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h4 {
+            font-size: 2rem;
+        }
+
+        .desc {
+            font-size: 1.6rem;
+        }
+
+        img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .img-cont {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .icon-cont {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
 </style>

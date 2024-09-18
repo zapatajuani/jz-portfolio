@@ -25,7 +25,7 @@ const {studiesData, title} = Astro.props as Props
 <style>
     section {
         scroll-margin-top: 7rem;
-        width: 90rem;
+        max-width: 90rem;
         height: auto;
         margin: 1rem;
     }
@@ -39,5 +39,16 @@ const {studiesData, title} = Astro.props as Props
     h1 {
         color: rgb(196, 223, 99);
         font-size: 4rem;
+    }
+
+    @media (width < 1000px) {
+        section {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
     }
 </style>

@@ -1,9 +1,9 @@
 ---
 import { type Exp } from "../types/Data"
+import '../styles/md_styles.css'
 
 import { getCollection } from "astro:content"
 const jobsDesc = await getCollection("jobs")
-
 
 interface Props {
     exp: Exp
@@ -79,5 +79,27 @@ const { exp } = Astro.props as Props
 
     .bold {
         font-weight: 700;
+    }
+
+    @media (width < 1000px) {
+        section {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        h4 {
+            font-size: 2rem;
+        }
+
+        span {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .bold {
+            font-size: 1.6rem;
+        }
     }
 </style>

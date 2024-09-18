@@ -31,3 +31,9 @@ li {
 .icon-md.extra {
     left: -32px;
 }
+
+@media (width < 1000px) {
+    p {
+        font-size: 1.6rem;
+    }
+}

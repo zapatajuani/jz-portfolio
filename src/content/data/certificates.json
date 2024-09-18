@@ -1,0 +1,32 @@
+{
+    "1": {
+        "url": "/certificates/001.jpg",
+        "desc": "Mastermind - Aprende a programar con Python"
+    },
+    
+    "2": {
+        "url": "/certificates/002.jpg",
+        "desc": "MongoDB - Using MongoDB with Python"
+    },
+    
+    
+    "3": {
+        "url": "/certificates/003.jpg",
+        "desc": "MongoDB - Introduction to MongoDB"
+    },
+    
+    "4": {
+        "url": "/certificates/004.jpg",
+        "desc": "UTN e-Learning - Diplomatura Python"
+    },
+    
+    "5": {
+        "url": "/certificates/005.jpg",
+        "desc": "UTN e-Learning - Diplomatura Base de datos"
+    },
+
+    "6": {
+        "url": "/certificates/006.jpg",
+        "desc": "Certificado Codo a Codo 4.0 Desarrollo Web (JS/NodeJs)"
+    }
+}
