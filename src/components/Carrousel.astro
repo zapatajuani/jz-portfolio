@@ -11,7 +11,10 @@ interface Props {
 const {title} = Astro.props as Props
 ---
 <section id="certificates">
-    <h1>{title}</h1>
+    <h1>
+        {title}
+        <img id="download-mobile" src="/svg/download-movil.svg" alt="download">
+    </h1>
     <br>
     <br>
     <div class="container">
@@ -45,7 +48,7 @@ const {title} = Astro.props as Props
             <img class="download-icon-base" src="/svg/line.svg" alt="">
         </div>
 
-        <img id="download-mobile" src="/svg/download-movil.svg" alt="download">
+        <!-- <img id="download-mobile" src="/svg/download-movil.svg" alt="download"> -->
     </div>
 </section>
 
@@ -53,6 +56,9 @@ const {title} = Astro.props as Props
 
 
     @media (width >= 1000px) {
+        #download-mobile {
+            display: none;
+        }
 
         h1 {
             color: rgb(196, 223, 99);
@@ -195,6 +201,14 @@ const {title} = Astro.props as Props
     }
 
     @media (width < 1000px) {
+
+        h1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         section {
             margin-left: 20px;
             margin-right: 20px;
@@ -241,9 +255,7 @@ const {title} = Astro.props as Props
         }
         
         #download-mobile {
-            position: absolute;
-
-            height: 40px;
+            height: 30px;
             width: auto;
 
             bottom: 80%;
@@ -355,7 +367,7 @@ const {title} = Astro.props as Props
 
         mobileDownload.addEventListener('click', () => {
             // URL del archivo PDF
-            var pdfUrl = `${actImg.replace("jpg", "pdf")}`
+            var pdfUrl = `${actImg.replace("jpg", "pdf")}`           
 
             // Crear un enlace temporal
             var link = document.createElement('a');
@@ -370,7 +382,7 @@ const {title} = Astro.props as Props
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && entry.target instanceof HTMLImageElement) {
                     actImg = entry.target.src
                 }
             })
