@@ -1,0 +1,86 @@
+---
+import rawStack from '../content/data/stack.json'
+const stack: Array<string[]> = rawStack
+---
+
+<section id="stack">
+    
+    {
+        stack.map((e) => {
+          return (
+            <div class="container">
+              <img src={"/svg/" + e[1]} alt={e[0]} />
+              <p>{e[0]}</p>
+            </div>
+          );
+        })
+    }
+    
+</section>
+
+<style>
+    section {
+        max-width: 90rem;
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+        );
+        gap: 10px;
+    }
+    
+    h1 {
+        color: rgb(196, 223, 99);
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+    
+    p {
+        text-align: center;
+        font-size: 1.6rem;
+        color: rgb(196, 223, 99);
+    }
+
+    img {
+        height: 3rem;
+        width: auto;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid #09a;
+
+        background-color: rgb(15, 43, 85);
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        gap: 10px;
+    }
+
+
+    @media (width < 1000px) {
+        section {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+        }
+    }
+</style>

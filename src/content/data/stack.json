@@ -1,0 +1,10 @@
+[
+    ["Python 3", "python.svg"],
+    ["Javascript", "js.svg"],
+    ["HTML", "html.svg"],
+    ["CSS", "css.svg"],
+    ["SQL", "sql.svg"],
+    ["MySQL", "mysql.svg"],
+    ["NodeJS", "node.svg"],
+    ["React", "react.svg"]
+]
