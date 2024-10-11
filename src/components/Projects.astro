@@ -1,22 +1,36 @@
 ---
 import ProjectCard from "./ProjectCard.astro"
 
-const { projectsData, title } = Astro.props
+const { projectsData, title, lan } = Astro.props
 ---
 
 <section id="projects">
     <h1>{title}</h1>
+
     {
+        lan=='es'?
+        <br>
+        <h3>Estamos trabajando en esto...</h3>:
+        <br>
+        <h3>We are working on this...</h3>
+    }
+
+    <!-- {
         Object.keys(projectsData).map((item:string)=>{
             return <ProjectCard details={projectsData[item]}/>
         })
-    }
+    } -->
 </section>
 
 <style>
+
+    {/* Los comentarios no van solo puse esas partes para poder
+    acomodar */}
+
     section {
         scroll-margin-top: 7rem;
-        max-width: 90rem;
+        width: 90rem;
+        /* max-width: 90rem; */
         height: auto;
         margin: 1rem;
     }
@@ -26,8 +40,14 @@ const { projectsData, title } = Astro.props
         font-size: 4rem;
     }
 
+    h3 {
+        font-size: 2.4rem;
+        text-align: left;
+    }
+
     @media (width < 1000px) {
         section {
+            max-width: 90%; /* Esto tampoco iba */
             margin-left: 20px;
             margin-right: 20px;
         }
